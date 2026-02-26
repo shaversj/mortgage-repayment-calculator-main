@@ -188,22 +188,12 @@ function App() {
               }}
             >
               <Flex gap={12} direction="column">
-                <Radio c={theme.colors?.slate?.[9]} checked={form.values.mortgageType === "repayment"} label="Repayment" onChange={() => form.setFieldValue("mortgageType", "repayment")} />
-                <Radio c={theme.colors?.slate?.[9]} checked={form.values.mortgageType === "interest-only"} label="Interest Only" onChange={() => form.setFieldValue("mortgageType", "interest-only")} />
+                <Radio checked={form.values.mortgageType === "repayment"} label="Repayment" onChange={() => form.setFieldValue("mortgageType", "repayment")} />
+                <Radio checked={form.values.mortgageType === "interest-only"} label="Interest Only" onChange={() => form.setFieldValue("mortgageType", "interest-only")} />
               </Flex>
             </Fieldset>
 
-            <Button
-              mt={30}
-              size={"lg"}
-              justify={"left"}
-              // leftSection={calculatorIcon}
-              rightSection={<span />}
-              c={theme.colors?.slate?.[9]}
-              radius={"xl"}
-              style={{ fontSize: "18px", fontWeight: 700, lineHeight: "125%" }}
-              type="submit"
-            >
+            <Button mt={30} size={"lg"} justify={"left"} leftSection={calculatorIcon} radius={"xl"} type="submit">
               Calculate Repayments
             </Button>
           </form>

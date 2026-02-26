@@ -1,6 +1,15 @@
 .mantine-Radio-root {
     background-color: white;
     border: 1px solid #6B94A8;
+    border-radius: 4px;
+    padding: 12.5px 16px;
+    color: #133041;
+}
+
+.mantine-Radio-label {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 125%;
 }
 
 .mantine-Radio-root[data-checked] {
@@ -12,6 +21,21 @@
     border: 1px solid #D8DB2F;
 }
 
+
+
+
+.mantine-Button-root {
+    background-color: #D8DB2F;
+}
+
+.mantine-Button-label {
+    color: #133041;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 125%;
+}
+
 .mantine-Button-root:hover {
     color: #ebed97;
 }
+
