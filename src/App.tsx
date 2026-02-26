@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { Title, Text, Flex, Image, Box, TextInput, ThemeIcon, Fieldset, Radio, Button } from "@mantine/core";
 import { theme } from "./theme/theme.ts";
 import "./App.css";
@@ -9,33 +8,26 @@ import calculator from "./assets/images/icon-calculator.svg";
 import { PiCurrencyGbpBold } from "react-icons/pi";
 
 import { MantineProvider } from "@mantine/core";
+import { useForm } from "@mantine/form";
 
 function App() {
-  const timeoutRef = useRef<number>(-1);
-  const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<string[]>([]);
-  const [mortgageType, setMortgageType] = useState<"repayment" | "interest-only">("repayment");
-
   const calculatorIcon = <Image src={calculator} alt="Calculate Icon" h={24} w={24} />;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setValue(newValue);
+  const form = useForm({
+    mode: "uncontrolled",
+    initialValues: {
+      mortgageAmount: "",
+      mortgageTerm: "",
+      interestRate: "",
+      mortgageType: "repayment",
+    },
 
-    if (timeoutRef.current !== -1) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      setLoading(true);
-      // Simulate an API call
-      setTimeout(() => {
-        setData([newValue]); // Replace with actual data from API
-        setLoading(false);
-      }, 1000);
-    }, 500);
-  };
+    validate: {
+      mortgageAmount: (value) => (/^\d+$/.test(value) ? null : "Mortgage amount must be a number"),
+      mortgageTerm: (value) => (/^\d+$/.test(value) ? null : "Mortgage term must be a number"),
+      interestRate: (value) => (/^\d+(\.\d+)?$/.test(value) ? null : "Interest rate must be a valid number"),
+    },
+  });
 
   const themedPi = (
     <ThemeIcon
@@ -66,7 +58,7 @@ function App() {
             </Box>
           </Flex>
 
-          <form style={{ paddingTop: "40px" }}>
+          <form style={{ paddingTop: "40px" }} onSubmit={form.onSubmit((values) => console.log(values))}>
             <TextInput
               styles={{
                 input: { paddingLeft: "56px", fontSize: "18px", fontWeight: 700, lineHeight: "125%", borderRadius: "4px", height: 48, border: `1px solid ${theme.colors?.slate?.[5]}` },
@@ -78,8 +70,8 @@ function App() {
               labelProps={{
                 style: { paddingBottom: "12px", color: theme.colors?.slate?.[7], fontSize: "16px", fontWeight: 500, lineHeight: "150%" },
               }}
-              value={value}
-              onChange={handleChange}
+              key={form.key("mortgageAmount")}
+              {...form.getInputProps("mortgageAmount")}
             />
 
             <Flex style={{ paddingTop: "24px" }} gap={24}>
@@ -127,6 +119,8 @@ function App() {
                 labelProps={{
                   style: { paddingBottom: "12px", color: theme.colors?.slate?.[7], fontSize: "16px", fontWeight: 500, lineHeight: "150%" },
                 }}
+                key={form.key("mortgageTerm")}
+                {...form.getInputProps("mortgageTerm")}
               />
 
               <TextInput
@@ -173,6 +167,8 @@ function App() {
                 labelProps={{
                   style: { paddingBottom: "12px", color: theme.colors?.slate?.[7], fontSize: "16px", fontWeight: 500, lineHeight: "150%" },
                 }}
+                key={form.key("interestRate")}
+                {...form.getInputProps("interestRate")}
               />
             </Flex>
 
@@ -202,10 +198,9 @@ function App() {
                     lineHeight: "125%",
                   }}
                   c={theme.colors?.slate?.[9]}
-                  value="repayment"
+                  checked={form.values.mortgageType === "repayment"}
                   label="Repayment"
-                  checked={mortgageType === "repayment"}
-                  onChange={() => setMortgageType("repayment")}
+                  onChange={() => form.setFieldValue("mortgageType", "repayment")}
                 />
                 <Radio
                   style={{
@@ -217,10 +212,9 @@ function App() {
                     lineHeight: "125%",
                   }}
                   c={theme.colors?.slate?.[9]}
-                  value="interest-only"
+                  checked={form.values.mortgageType === "interest-only"}
                   label="Interest Only"
-                  checked={mortgageType === "interest-only"}
-                  onChange={() => setMortgageType("interest-only")}
+                  onChange={() => form.setFieldValue("mortgageType", "interest-only")}
                 />
               </Flex>
             </Fieldset>
