@@ -1,0 +1,17 @@
+.mantine-Radio-root {
+    background-color: white;
+    border: 1px solid #6B94A8;
+}
+
+.mantine-Radio-root[data-checked] {
+    background-color: #f9fae0;
+    border: 1px solid #D8DB2F;
+}
+
+.mantine-Radio-root:hover {
+    border: 1px solid #D8DB2F;
+}
+
+.mantine-Button-root:hover {
+    color: #ebed97;
+}

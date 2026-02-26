@@ -19,7 +19,7 @@ function App() {
       mortgageAmount: "",
       mortgageTerm: "",
       interestRate: "",
-      mortgageType: "repayment",
+      mortgageType: "",
     },
 
     validate: {
@@ -188,34 +188,8 @@ function App() {
               }}
             >
               <Flex gap={12} direction="column">
-                <Radio
-                  style={{
-                    border: `1px solid ${theme.colors?.slate?.[5]}`,
-                    borderRadius: "4px",
-                    padding: "12.5px 16px",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    lineHeight: "125%",
-                  }}
-                  c={theme.colors?.slate?.[9]}
-                  checked={form.values.mortgageType === "repayment"}
-                  label="Repayment"
-                  onChange={() => form.setFieldValue("mortgageType", "repayment")}
-                />
-                <Radio
-                  style={{
-                    border: `1px solid ${theme.colors?.slate?.[5]}`,
-                    borderRadius: "4px",
-                    padding: "12.5px 16px",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    lineHeight: "125%",
-                  }}
-                  c={theme.colors?.slate?.[9]}
-                  checked={form.values.mortgageType === "interest-only"}
-                  label="Interest Only"
-                  onChange={() => form.setFieldValue("mortgageType", "interest-only")}
-                />
+                <Radio c={theme.colors?.slate?.[9]} checked={form.values.mortgageType === "repayment"} label="Repayment" onChange={() => form.setFieldValue("mortgageType", "repayment")} />
+                <Radio c={theme.colors?.slate?.[9]} checked={form.values.mortgageType === "interest-only"} label="Interest Only" onChange={() => form.setFieldValue("mortgageType", "interest-only")} />
               </Flex>
             </Fieldset>
 
@@ -223,7 +197,7 @@ function App() {
               mt={30}
               size={"lg"}
               justify={"left"}
-              leftSection={calculatorIcon}
+              // leftSection={calculatorIcon}
               rightSection={<span />}
               c={theme.colors?.slate?.[9]}
               radius={"xl"}

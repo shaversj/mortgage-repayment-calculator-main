@@ -2,6 +2,29 @@ import { createTheme } from "@mantine/core";
 
 export const theme = createTheme({
   fontFamily: "Plus Jakarta Sans, sans-serif",
+  components: {
+    Button: {
+      styles: {
+        root: {
+          "--button-hover": "var(--mantine-color-lime-3)",
+          "--button-hover-color": "#e1e558",
+        },
+      },
+    },
+    Radio: {
+      styles: {
+        root: {
+          borderRadius: "4px",
+          padding: "12.5px 16px",
+        },
+        label: {
+          fontSize: "18px",
+          fontWeight: 700,
+          lineHeight: "125%",
+        },
+      },
+    },
+  },
   headings: {
     fontFamily: "Plus Jakarta Sans, Inter, sans-serif",
     fontWeight: "700",
@@ -49,7 +72,7 @@ export const theme = createTheme({
     lime: [
       "#f9fae3",
       "#f1f3b5",
-      "#e9ec86",
+      "#ebed97",
       "#e1e558",
       "#d8db2f", // 4 (your base)
       "#c4c81a",
