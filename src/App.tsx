@@ -1,4 +1,4 @@
-import { Title, Text, Flex, Image, Box, TextInput, ThemeIcon, Fieldset, Radio, Button } from "@mantine/core";
+import { Title, Text, Flex, Image, Box, TextInput, Fieldset, Radio, Button } from "@mantine/core";
 import { theme } from "./theme/theme.ts";
 import "./App.css";
 import "@mantine/core/styles.css";
@@ -29,22 +29,8 @@ function App() {
     },
   });
 
-  const themedPi = (
-    <ThemeIcon
-      color={theme.colors?.slate?.[1]}
-      w={60}
-      h={48}
-      style={{
-        border: `1px solid ${theme.colors?.slate?.[5]}`,
-        borderTopLeftRadius: "4px",
-        borderBottomLeftRadius: "4px",
-        borderLeft: "none",
-      }}
-      radius={0}
-    >
-      <PiCurrencyGbpBold size={16} color={theme.colors?.slate?.[5]}></PiCurrencyGbpBold>
-    </ThemeIcon>
-  );
+  const pi = <PiCurrencyGbpBold size={16} color={theme.colors?.slate?.[5]} />;
+
   return (
     <MantineProvider theme={theme}>
       <Flex h="100vh" w="100vw" justify="center" align="center">
@@ -60,34 +46,18 @@ function App() {
 
           <form style={{ paddingTop: "40px" }} onSubmit={form.onSubmit((values) => console.log(values))}>
             <TextInput
-              styles={{
-                input: { paddingLeft: "56px", fontSize: "18px", fontWeight: 700, lineHeight: "125%", borderRadius: "4px", height: 48, border: `1px solid ${theme.colors?.slate?.[5]}` },
-              }}
+              id="mortgageAmount"
               leftSectionPointerEvents="none"
-              leftSection={themedPi}
+              leftSection={pi}
               leftSectionWidth="40px"
               label="Mortgage Amount"
-              labelProps={{
-                style: { paddingBottom: "12px", color: theme.colors?.slate?.[7], fontSize: "16px", fontWeight: 500, lineHeight: "150%" },
-              }}
               key={form.key("mortgageAmount")}
               {...form.getInputProps("mortgageAmount")}
             />
 
             <Flex style={{ paddingTop: "24px" }} gap={24}>
               <TextInput
-                styles={{
-                  input: {
-                    paddingLeft: "16px",
-                    paddingRight: "16px",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    lineHeight: "125%",
-                    borderRadius: "4px",
-                    height: 48,
-                    border: `1px solid ${theme.colors?.slate?.[5]}`,
-                  },
-                }}
+                id="mortgageTerm"
                 rightSectionPointerEvents="none"
                 rightSectionWidth={80}
                 rightSection={
@@ -124,6 +94,7 @@ function App() {
               />
 
               <TextInput
+                id="interestRate"
                 styles={{
                   input: {
                     paddingLeft: "16px",

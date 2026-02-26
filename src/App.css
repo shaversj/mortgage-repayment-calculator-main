@@ -1,3 +1,71 @@
+.mantine-TextInput-input {
+    height: 48px !important;
+    border: 1px solid #6B94A8 !important;
+    border-radius: 4px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 125% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    color: #133041 !important;
+}
+
+#mortgageAmount.mantine-TextInput-input {
+    padding-left: 56px !important;
+}
+
+#mortgageAmount.mantine-TextInput-section {
+
+}
+
+/*.mantine-TextInput-section {*/
+/*    color: #6B94A8 !important;*/
+/*    padding: 16px !important;*/
+/*}*/
+
+
+
+/*.mantine-TextInput-input {*/
+/*    border: 1px solid #6B94A8;*/
+/*    border-radius: 4px;*/
+/*    font-size: 18px;*/
+/*    font-weight: 700;*/
+/*    line-height: 125%;*/
+/*    height: 48px;*/
+
+
+/*}*/
+
+
+
+.mantine-TextInput-input {
+    border: 1px solid #6B94A8;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 125%;
+    height: 48px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+.mantine-TextInput-label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    color: #4E6E7E;
+    padding-bottom: 12px;
+}
+
+.mantine-TextInput-section {
+    background-color: #cfe2ef;
+}
+
+
+
+
+
 .mantine-Radio-root {
     background-color: white;
     border: 1px solid #6B94A8;
