@@ -1,49 +1,61 @@
-// src/routes/index.tsx
-import * as fs from "node:fs";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-
-const filePath = "count.txt";
-
-async function readCount() {
-  return parseInt(await fs.promises.readFile(filePath, "utf-8").catch(() => "0"));
-}
-
-const getCount = createServerFn({
-  method: "GET",
-}).handler(() => {
-  return readCount();
-});
-
-const updateCount = createServerFn({ method: "POST" })
-  .inputValidator((d: number) => d)
-  .handler(async ({ data }) => {
-    const count = await readCount();
-    await fs.promises.writeFile(filePath, `${count + data}`);
-  });
+import { createFileRoute } from "@tanstack/react-router";
+import { useForm } from "@tanstack/react-form";
+import { FaSterlingSign } from "react-icons/fa6";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  loader: async () => await getCount(),
 });
 
 function Home() {
-  const router = useRouter();
-  const state = Route.useLoaderData();
+  const form = useForm({
+    defaultValues: {
+      amount: "",
+      term: "",
+      rate: "",
+      mortgageType: "",
+    },
+    onSubmit: async ({ value }) => {
+      // Do something with form data
+      console.log(value);
+    },
+  });
 
   return (
-    <div>
-      <h1>Yes</h1>
-      <button
-        type="button"
-        onClick={() => {
-          updateCount({ data: 1 }).then(() => {
-            router.invalidate();
-          });
-        }}
-      >
-        Add 1 to {state}?
-      </button>
+    <div className={"grid min-h-screen place-items-center bg-slate-100"}>
+      <section className={"w-126 bg-white p-10"}>
+        <header className={"flex items-center"}>
+          <h1 className={"text-preset-2 text-slate-900"}>Mortgage Calculator</h1>
+          <p className={"text-preset-4 ml-auto text-slate-700 underline"}>Clear All</p>
+        </header>
+        <main className={"pt-10"}>
+          <form.Field
+            name="amount"
+            children={(field) => (
+              <div className={"space-y-3"}>
+                <label htmlFor={field.name} className={"text-preset-4 block text-slate-700"}>
+                  Mortgage Amount
+                </label>
+                <div className={"group field-shell focus-within:field-shell-focus"}>
+                  <div className={"field-prefix text-preset-3 group-focus-within:field-prefix-focus"}>
+                    <FaSterlingSign aria-hidden="true" className={"size-6"} />
+                  </div>
+                  <input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    placeholder="300,000"
+                    className={"field-input text-preset-3"}
+                  />
+                </div>
+              </div>
+            )}
+          />
+        </main>
+      </section>
+
+      <section></section>
     </div>
   );
 }

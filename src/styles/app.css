@@ -78,3 +78,49 @@
   letter-spacing: 0;
   font-weight: 500;
 }
+
+@utility field-shell {
+  display: flex;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-slate-500);
+  background-color: var(--color-white);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+@utility field-shell-focus {
+  border-color: var(--color-lime);
+  box-shadow: 0 0 0 1px var(--color-lime);
+}
+
+@utility field-prefix {
+  display: flex;
+  min-width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-slate-100);
+  padding-inline: 1rem;
+  color: var(--color-slate-700);
+}
+
+@utility field-prefix-focus {
+  background-color: var(--color-lime);
+  color: var(--color-slate-900);
+}
+
+@utility field-input {
+  width: 100%;
+  background-color: transparent;
+  padding-inline: 1rem;
+  padding-block: 0.75rem;
+  color: var(--color-slate-900);
+  outline: none;
+}
+
+@layer components {
+  .field-input::placeholder {
+  color: var(--color-slate-700);
+  }
+}
