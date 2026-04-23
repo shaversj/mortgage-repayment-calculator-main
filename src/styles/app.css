@@ -1,7 +1,18 @@
 /* src/styles/app.css */
 @import 'tailwindcss' source('../');
 
+@import '@fontsource-variable/plus-jakarta-sans';
+
 @theme {
+  --font-sans: 'Plus Jakarta Sans Variable', sans-serif;
+
+  --spacing-100: 0.5rem;
+  --spacing-150: 0.75rem;
+  --spacing-200: 1rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+
   --color-lime: #d8db2f;
   --color-slate-900: #133041;
   --color-slate-700: #4e6e7e;
@@ -31,4 +42,39 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+}
+
+@utility text-preset-1 {
+  font-size: 3.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.0625rem;
+  font-weight: 700;
+}
+
+@utility text-preset-2 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.0625rem;
+  font-weight: 700;
+}
+
+@utility text-preset-3 {
+  font-size: 1.125rem;
+  line-height: 1.25;
+  letter-spacing: -0.0625rem;
+  font-weight: 700;
+}
+
+@utility text-preset-4 {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+@utility text-preset-5 {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 500;
 }
