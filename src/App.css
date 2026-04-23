@@ -18,10 +18,9 @@
 
 }
 
-/*.mantine-TextInput-section {*/
-/*    color: #6B94A8 !important;*/
-/*    padding: 16px !important;*/
-/*}*/
+.mantine-TextInput-section #mortgageAmount {
+    color: #6B94A8 !important;
+}
 
 
 

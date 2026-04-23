@@ -61,29 +61,31 @@ function App() {
                 rightSectionPointerEvents="none"
                 rightSectionWidth={80}
                 rightSection={
-                  <Text
+                  <Flex
                     h={48}
-                    w={80}
-                    c={theme.colors?.slate?.[5]}
+                    justify="center"
+                    align="center"
                     style={{
-                      paddingRight: "16x",
-                      paddingLeft: "16px",
-                      paddingTop: "12px",
-                      paddingBottom: "12px",
                       backgroundColor: theme.colors?.slate?.[1],
                       border: `1px solid ${theme.colors?.slate?.[5]}`,
                       borderTopRightRadius: "4px",
                       borderBottomRightRadius: "4px",
                       borderLeft: "none",
                       borderRight: "none",
-                      fontSize: "18px",
-                      fontWeight: 700,
-                      letterSpacing: "-1px",
-                      lineHeight: "125%",
                     }}
                   >
-                    years
-                  </Text>
+                    <Text
+                      c={theme.colors?.slate?.[5]}
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: 700,
+                        letterSpacing: "-1px",
+                        lineHeight: "125%",
+                      }}
+                    >
+                      years
+                    </Text>
+                  </Flex>
                 }
                 label="Mortgage Term"
                 labelProps={{
