@@ -19,7 +19,15 @@ export const Route = createRootRoute({
         title: "TanStack Start Starter",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png",
+      },
+    ],
   }),
   component: RootComponent,
 });
