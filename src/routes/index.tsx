@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <div className={"grid min-h-screen place-items-center bg-slate-100"}>
-      <div className={"flex h-[606px]"}>
+      <div className={"flex h-[606px] overflow-hidden rounded-3xl bg-white"}>
         <section className={"w-126 bg-white p-10"}>
           <header className={"flex items-center"}>
             <h1 className={"text-preset-2 text-slate-900"}>Mortgage Calculator</h1>
@@ -160,7 +160,7 @@ function Home() {
           </main>
         </section>
 
-        <section className={"grid w-126 place-items-center bg-slate-900"}>
+        <section className={"grid w-126 place-items-center rounded-br-3xl rounded-bl-[5rem] bg-slate-900"}>
           <div className={"grid place-items-center space-y-4 p-10"}>
             <img src={heroImage} alt="Illustration of a person calculating their mortgage repayments" />
             <p className={"text-preset-2 text-white"}>Results shown here</p>
