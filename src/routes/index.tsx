@@ -173,7 +173,7 @@ function Home() {
         <section className={"w-126 rounded-br-3xl rounded-bl-[5rem] bg-slate-900 p-10"}>
           <div className={""}>
             <p className={"text-preset-2 text-white"}>Your Results</p>
-            <p className={"text-preset-4 text-slate-300"}>
+            <p className={"text-preset-4 pt-4 text-slate-300"}>
               Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate
               repayments” again.
             </p>
