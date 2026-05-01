@@ -27,14 +27,14 @@ function Home() {
   });
 
   return (
-    <div className={"grid min-h-screen place-items-center bg-slate-100"}>
-      <div className={"flex h-[606px] overflow-hidden rounded-3xl bg-white"}>
-        <section className={"w-126 bg-white p-10"}>
-          <header className={"flex items-center"}>
+    <div className={"min-h-screen bg-slate-100 md:grid md:place-items-center"}>
+      <div className={"rounded-3xl bg-white lg:flex lg:h-[606px] lg:overflow-hidden"}>
+        <section className={"bg-white px-6 py-8 md:p-10 lg:w-126"}>
+          <header className={"items-center lg:flex"}>
             <h1 className={"text-preset-2 text-slate-900"}>Mortgage Calculator</h1>
             <button
               type="button"
-              className="text-preset-4 ml-auto text-slate-700 underline"
+              className="text-preset-4 ml-auto pt-2 text-slate-700 underline md:pt-0"
               onClick={() => {
                 form.reset();
                 setCalculatorResults(null);
@@ -43,7 +43,7 @@ function Home() {
               Clear All
             </button>
           </header>
-          <main className={"pt-10"}>
+          <main className={"pt-6 md:pt-10"}>
             <form.Field
               name="amount"
               children={(field) => (
@@ -71,7 +71,7 @@ function Home() {
                 </div>
               )}
             />
-            <section className={"mt-6 flex gap-4"}>
+            <section className={"mt-6 space-y-6 md:flex md:gap-4 md:space-y-0"}>
               <form.Field
                 name="term"
                 children={(field) => (
@@ -170,7 +170,7 @@ function Home() {
             >
               <button
                 className={
-                  "bg-lime hover:bg-lime/50 text-preset-3 mt-10 flex items-center gap-2 rounded-full px-10 py-4 text-slate-900 transition-colors"
+                  "bg-lime hover:bg-lime/50 text-preset-3 mt-10 flex w-full items-center justify-center gap-2 rounded-full py-4 text-slate-900 transition-colors md:w-auto md:justify-start md:px-10"
                 }
                 type="submit"
               >
@@ -182,7 +182,7 @@ function Home() {
         </section>
 
         {calculatorResults ? (
-          <section className={"w-126 rounded-br-3xl rounded-bl-[5rem] bg-slate-900 p-10"}>
+          <section className={"bg-slate-900 px-6 py-8 md:rounded-br-3xl md:p-10 lg:w-126 lg:rounded-bl-[5rem]"}>
             <div className={""}>
               <p className={"text-preset-2 text-white"}>Your Results</p>
               <p className={"text-preset-4 pt-4 text-slate-300"}>
@@ -191,7 +191,7 @@ function Home() {
               </p>
             </div>
 
-            <div className={"bg-lime mt-10 rounded-lg pt-1"}>
+            <div className={"bg-lime mt-6 rounded-lg pt-1 md:mt-10"}>
               <div className={"rounded-t-[0.28888rem] rounded-b-lg bg-[#0e2431] px-8 py-10"}>
                 <p className={"text-preset-4 text-slate-300"}>Your monthly repayments</p>
                 <p className={"text-lime text-preset-1 pt-2"}>{formatCurrency(calculatorResults.monthlyRepayment)}</p>
@@ -202,7 +202,7 @@ function Home() {
             </div>
           </section>
         ) : (
-          <section className={"grid w-126 place-items-center rounded-br-3xl rounded-bl-[5rem] bg-slate-900"}>
+          <section className={"grid place-items-center bg-slate-900 md:rounded-b-3xl lg:w-126 lg:rounded-bl-[5rem]"}>
             <div className={"grid place-items-center space-y-4 p-10"}>
               <img src={heroImage} alt="Illustration of a person calculating their mortgage repayments" />
               <p className={"text-preset-2 text-white"}>Results shown here</p>
