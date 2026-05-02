@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div className={"min-h-screen bg-slate-100 md:grid md:place-items-center"}>
-      <div className={"rounded-3xl bg-white lg:flex lg:h-[606px] lg:overflow-hidden"}>
+      <div className={"rounded-3xl bg-white lg:flex lg:min-h-[606px] lg:overflow-hidden"}>
         <section className={"bg-white px-6 py-8 md:p-10 lg:w-126"}>
           <header className={"items-center lg:flex"}>
             <h1 className={"text-preset-2 text-slate-900"}>Mortgage Calculator</h1>
@@ -44,15 +44,35 @@ function Home() {
             </button>
           </header>
           <main className={"pt-6 md:pt-10"}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                form.handleSubmit();
+              }}
+            >
             <form.Field
               name="amount"
+              validators={{
+                onSubmit: ({ value }) => (!value ? "This field is required" : undefined),
+              }}
               children={(field) => (
                 <div className={"space-y-3"}>
                   <label htmlFor={field.name} className={"text-preset-4 block text-slate-700"}>
                     Mortgage Amount
                   </label>
-                  <div className={"group field-shell focus-within:field-shell-focus"}>
-                    <div className={"field-prefix text-preset-3 group-focus-within:field-prefix-focus"}>
+                  <div
+                    className={[
+                      "group field-shell focus-within:field-shell-focus",
+                      field.state.meta.errors.length ? "border-red" : "",
+                    ].join(" ")}
+                  >
+                    <div
+                      className={[
+                        "field-prefix text-preset-3 group-focus-within:field-prefix-focus",
+                        field.state.meta.errors.length ? "bg-red text-white group-focus-within:bg-red group-focus-within:text-white" : "",
+                      ].join(" ")}
+                    >
                       <FaSterlingSign aria-hidden="true" className={"size-6"} />
                     </div>
                     <input
@@ -68,18 +88,27 @@ function Home() {
                       className={"field-input text-preset-3"}
                     />
                   </div>
+                  {field.state.meta.errors[0] ? <p className={"text-preset-4 text-red"}>{field.state.meta.errors[0]}</p> : null}
                 </div>
               )}
             />
             <section className={"mt-6 space-y-6 md:flex md:gap-4 md:space-y-0"}>
               <form.Field
                 name="term"
+                validators={{
+                  onSubmit: ({ value }) => (!value ? "This field is required" : undefined),
+                }}
                 children={(field) => (
                   <div className={"space-y-3"}>
                     <label htmlFor={field.name} className={"text-preset-4 block text-slate-700"}>
                       Mortgage Term
                     </label>
-                    <div className={"group field-shell focus-within:field-shell-focus"}>
+                    <div
+                      className={[
+                        "group field-shell focus-within:field-shell-focus",
+                        field.state.meta.errors.length ? "border-red" : "",
+                      ].join(" ")}
+                    >
                       <input
                         id={field.name}
                         name={field.name}
@@ -88,19 +117,35 @@ function Home() {
                         onChange={(e) => field.handleChange(e.target.value)}
                         className={"field-input text-preset-3"}
                       />
-                      <div className={"field-prefix text-preset-3 group-focus-within:field-prefix-focus"}>years</div>
+                      <div
+                        className={[
+                          "field-prefix text-preset-3 group-focus-within:field-prefix-focus",
+                          field.state.meta.errors.length ? "bg-red text-white group-focus-within:bg-red group-focus-within:text-white" : "",
+                        ].join(" ")}
+                      >
+                        years
+                      </div>
                     </div>
+                    {field.state.meta.errors[0] ? <p className={"text-preset-4 text-red"}>{field.state.meta.errors[0]}</p> : null}
                   </div>
                 )}
               />
               <form.Field
                 name="rate"
+                validators={{
+                  onSubmit: ({ value }) => (!value ? "This field is required" : undefined),
+                }}
                 children={(field) => (
                   <div className={"space-y-3"}>
                     <label htmlFor={field.name} className={"text-preset-4 block text-slate-700"}>
                       Interest Rate
                     </label>
-                    <div className={"group field-shell focus-within:field-shell-focus"}>
+                    <div
+                      className={[
+                        "group field-shell focus-within:field-shell-focus",
+                        field.state.meta.errors.length ? "border-red" : "",
+                      ].join(" ")}
+                    >
                       <input
                         id={field.name}
                         name={field.name}
@@ -109,8 +154,16 @@ function Home() {
                         onChange={(e) => field.handleChange(e.target.value)}
                         className={"field-input text-preset-3"}
                       />
-                      <div className={"field-prefix text-preset-3 group-focus-within:field-prefix-focus"}>%</div>
+                      <div
+                        className={[
+                          "field-prefix text-preset-3 group-focus-within:field-prefix-focus",
+                          field.state.meta.errors.length ? "bg-red text-white group-focus-within:bg-red group-focus-within:text-white" : "",
+                        ].join(" ")}
+                      >
+                        %
+                      </div>
                     </div>
+                    {field.state.meta.errors[0] ? <p className={"text-preset-4 text-red"}>{field.state.meta.errors[0]}</p> : null}
                   </div>
                 )}
               />
@@ -119,6 +172,9 @@ function Home() {
             <section>
               <form.Field
                 name="mortgageType"
+                validators={{
+                  onSubmit: ({ value }) => (!value ? "This field is required" : undefined),
+                }}
                 children={(field) => (
                   <fieldset className={"mt-6 space-y-3"}>
                     <legend className={"text-preset-4 text-slate-700"}>Mortgage Type</legend>
@@ -156,18 +212,12 @@ function Home() {
                         </label>
                       );
                     })}
+                    {field.state.meta.errors[0] ? <p className={"text-preset-4 text-red"}>{field.state.meta.errors[0]}</p> : null}
                   </fieldset>
                 )}
               />
             </section>
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                form.handleSubmit();
-              }}
-            >
               <button
                 className={
                   "bg-lime hover:bg-lime/50 text-preset-3 mt-10 flex w-full items-center justify-center gap-2 rounded-full py-4 text-slate-900 transition-colors md:w-auto md:justify-start md:px-10"
