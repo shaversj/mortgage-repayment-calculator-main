@@ -112,9 +112,13 @@ function Home() {
                       <input
                         id={field.name}
                         name={field.name}
+                        inputMode="numeric"
                         value={field.state.value}
                         onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
+                        onChange={(e) => {
+                          const numeric = e.target.value.replace(/[^\d]/g, "");
+                          field.handleChange(numeric);
+                        }}
                         className={"field-input text-preset-3"}
                       />
                       <div
@@ -149,9 +153,15 @@ function Home() {
                       <input
                         id={field.name}
                         name={field.name}
+                        inputMode="decimal"
                         value={field.state.value}
                         onBlur={field.handleBlur}
-                        onChange={(e) => field.handleChange(e.target.value)}
+                        onChange={(e) => {
+                          const sanitized = e.target.value
+                            .replace(/[^\d.]/g, "")
+                            .replace(/(\..*)\./g, "$1");
+                          field.handleChange(sanitized);
+                        }}
                         className={"field-input text-preset-3"}
                       />
                       <div
