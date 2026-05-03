@@ -26,7 +26,7 @@ export function MortgageForm({ form, onClear }: MortgageFormProps) {
           Clear All
         </button>
       </header>
-      <section className={"pt-6 md:pt-10"}>
+      <div className={"pt-6 md:pt-10"}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -61,7 +61,7 @@ export function MortgageForm({ form, onClear }: MortgageFormProps) {
               </InputRow>
             )}
           />
-          <section className={"mt-6 space-y-6 md:flex md:gap-4 md:space-y-0"}>
+          <div className={"mt-6 space-y-6 md:flex md:gap-4 md:space-y-0"}>
             <form.Field
               name="term"
               validators={{
@@ -106,9 +106,9 @@ export function MortgageForm({ form, onClear }: MortgageFormProps) {
                 </InputRow>
               )}
             />
-          </section>
+          </div>
 
-          <section>
+          <div>
             <form.Field
               name="mortgageType"
               validators={{
@@ -153,9 +153,9 @@ export function MortgageForm({ form, onClear }: MortgageFormProps) {
                   })}
                   {field.state.meta.errors[0] ? <p className={"text-preset-4 text-red"}>{field.state.meta.errors[0]}</p> : null}
                 </fieldset>
-              )}
+                )}
             />
-          </section>
+          </div>
 
           <button
             className={
@@ -167,7 +167,7 @@ export function MortgageForm({ form, onClear }: MortgageFormProps) {
             Calculate Repayments
           </button>
         </form>
-      </section>
+      </div>
     </>
   );
 }
